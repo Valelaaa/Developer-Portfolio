@@ -1,0 +1,28 @@
+//Так как я никогда не делал адекватных веб приложений, тут я буду писать комментарии рядом с каждым свойством
+//Своего рода конспект
+.app {
+    //vh - Relative to 1% of the height of the viewport
+    //vw - Relative to 1% of the width of the viewport
+    height: 100vh; //100% of the height of the viewport
+    .sections {
+        width: 100%; //100% block with above
+        height: calc(100vh - 70px); //height = 100% - header_height
+        background-color: lightsalmon;
+        position: relative; //set relative position (relative to the block above)
+        top: 70px; //set sections on the position lower than header
+        scroll-snap-type: y mandatory;  // scrolling is done to each new section
+        scrollbar-width: none; //for firefox (
+        &::-webkit-scrollbar{
+            display: none; //for others browsers (remove scrollbar width)
+        }
+        scroll-behavior: smooth; //smooth scrolling
+
+        > *{
+            width: 100vw; //100% of the width of viewport(browser)
+            height: calc(100vh - 70px);
+            scroll-snap-align: start; //when scrolling, automatically set the start point to the top of the section
+        }
+    }
+
+}
+
