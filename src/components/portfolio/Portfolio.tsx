@@ -12,27 +12,6 @@ import {
 import WorkForm from "../workform/WorkForm.tsx";
 
 export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
-    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files.length > 0) {
-            const file = event.target.files[0];
-            setSelectedImage(file);
-        }
-    };
-    const handleSaveImage = () => {
-        if (selectedImage) {
-            const reader = new FileReader();
-            reader.readAsDataURL(selectedImage);
-            reader.onload = () => {
-                const base64Image = reader.result as string;
-                localStorage.setItem('image', base64Image);
-                console.log('Image saved to local storage');
-            };
-            reader.onerror = () => {
-                console.error('Error occurred while reading the image file');
-            };
-        }
-    };
     const [selected, setSelected] = useState("featured")
     const list = [
         {
@@ -115,11 +94,7 @@ export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
                  onClick={handleAddWorksClick}>
                 <div className={"add-feature"} onClick={(e) => e.stopPropagation()}>
                     <h1>Add work</h1>
-                    <WorkForm selectedImage={selectedImage}
-                              handleImageUpload={handleImageUpload}
-                              handleSaveImage={handleSaveImage}
-                              portfolioOpen={portfolioOpen}
-                              setPortfolioOpen={setPortfolioOpen}
+                    <WorkForm portfolioOpen={portfolioOpen}
                               createWorkPlace={(item: AddedMyWork) => createNewItem(item)}
                               handleAddWorksClick = {handleAddWorksClick}
                     />

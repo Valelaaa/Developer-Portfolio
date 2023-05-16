@@ -4,11 +4,7 @@ import {useState} from "react";
 import {AddedMyWork} from "../../data.ts"
 
 export default function WorkForm({
-                                     selectedImage,
-                                     handleImageUpload,
-                                     handleSaveImage,
                                      portfolioOpen,
-                                     setPortfolioOpen,
                                      createWorkPlace,
                                      handleAddWorksClick
                                  }) {
@@ -36,6 +32,13 @@ export default function WorkForm({
         setLink('')
         setImg('')
     }
+    const handleImageUpload = (event) => {
+        if (event.target.files && event.target.files.length > 0) {
+            const file = event.target.files[0];
+            const imageUrl = URL.createObjectURL(file);
+            setImg(imageUrl);
+        }
+    };
     const isSubmitDisabled = title.trim() === '' || link.trim() === '' || img.trim() === '';
 
     return (
@@ -48,9 +51,8 @@ export default function WorkForm({
             <label>Enter a link to your work</label>
             <Input className={"input"} type="text" required={true} value={link}
                    onChange={(e) => setLink(e.target.value)} placeholder={"link to your work"}/>
-            <label>Image urlAddress</label>
-            <Input className={"input"} type="text" required={true} value={img} onChange={(e) => setImg(e.target.value)}
-                   placeholder={"image link "}/>
+            <label>Upload Image</label>
+            <Input className={"input"} type="file" accept="image/*" onChange={handleImageUpload}/>
             <input className={"confirm"} type="submit" disabled={isSubmitDisabled} onClick={handleAddWorksClick}/>
             <Button className={"cancel"}
                     danger
