@@ -1,0 +1,137 @@
+@import "../../global.scss";
+
+.portfolio {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+
+  h1 {
+    font-size: 50px;
+  }
+
+  ul {
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+
+  }
+
+  .container {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+
+    .item {
+      width: 220px;
+      height: 150px;
+      border-radius: 20px;
+      border: 1px solid rgb(240, 239, 239);
+      margin: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      position: relative;
+      transition: all .5s ease;
+      cursor: pointer;
+
+      h3 {
+        position: absolute;
+        font-size: 20px;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: 1;
+      }
+
+      &:hover {
+        background-color: $mainColor;
+
+        img {
+          opacity: 0.2;
+        }
+      }
+    }
+  }
+
+  position: relative;
+
+  .add-works {
+    overflow: hidden;
+    background-color: lightgray;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    border: 0.5px rgba(117, 117, 117, 0.37) solid;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .plus {
+      font-size: 50px;
+      color: #4d4d4d;
+      font-weight: 100;
+      margin-left: -1px;
+      margin-top: -1px;
+    }
+  }
+
+  .feature-container {
+    position: absolute;
+    display: flex;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(89, 89, 89, 0.5);
+    z-index: 5;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+
+    .add-feature {
+      width: 50%;
+      height: 50%;
+      background-color: white;
+      border-radius: 20px;
+      overflow: hidden;
+      h1 {
+        text-align: center;
+      }
+
+    }
+
+    &.active {
+      visibility: visible;
+      opacity: 1;
+
+    }
+    @media (max-width: 1280px) {
+      .add-feature {
+        margin-top: -100px;
+        width: 50%;
+        height: 80%;
+        background-color: white;
+        border-radius: 20px;
+        overflow: hidden;
+        h1 {
+          text-align: center;
+        }
+
+      }
+    }
+  }
+}
+

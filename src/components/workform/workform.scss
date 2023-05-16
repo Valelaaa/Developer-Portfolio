@@ -1,0 +1,37 @@
+.form-action {
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  display: grid;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  label {
+    font-size: 16px;
+    color: black;
+    font-weight: 500;
+  }
+
+  .input {
+    margin-bottom: 20px;
+    width: 100%;
+
+  }
+
+  .confirm {
+    height: 50px;
+    cursor: pointer;
+  }
+
+  .cancel {
+    margin-top: 15px;
+  }
+
+  Button {
+    overflow: hidden;
+  }
+  &.visible {
+    opacity: 1;
+  }
+}
+
