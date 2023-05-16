@@ -67,6 +67,8 @@ export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
     const handleAddWorksClick = () => {
         setPortfolioOpen(!portfolioOpen);
     };
+
+
     return (
         <div className={"portfolio"} id={"portfolio"}>
             <h1>Portfolio</h1>
