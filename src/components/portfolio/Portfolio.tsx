@@ -70,8 +70,6 @@ const Portfolio= observer(({portfolioOpen, setPortfolioOpen}) => {
 
     }, [selected,featureStore]);
     const createNewItem = (item: AddedMyWork) => {
-        // setData(prevState => [...prevState, item])
-        // featureStore.setItems();
         featureStore.addItem(item);
     }
     const handleAddWorksClick = () => {

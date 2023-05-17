@@ -36,9 +36,21 @@
         color: inherit;
       }
 
-      &:hover{
+      &:hover {
         font-weight: 500;
       }
     }
+  }
+
+  .login-link {
+    text-decoration: none ;
+  }
+  .log-in {
+    display: flex;
+    overflow: hidden;
+    height: 40px;
+    margin-top: 40px;
+    align-items: center;
+
   }
 }
