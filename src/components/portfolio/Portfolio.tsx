@@ -1,4 +1,4 @@
-import './portfolio.scss'
+    import './portfolio.scss'
 import PortfolioList from "../portfolioList/PortfolioList.tsx";
 import {useEffect, useState} from "react";
 import {PlusOutlined} from "@ant-design/icons";
@@ -7,32 +7,13 @@ import {
     webPortfolio,
     mobilePortfolio,
     designPortfolio,
-    contentPortfolio, AddedMyWork, MyWork
+    contentPortfolio, AddedMyWork
 } from "../../data.ts";
 import WorkForm from "../workform/WorkForm.tsx";
+import useStore from "../../store/useStore.tsx";
+    import {observer} from "mobx-react";
 
-export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
-    const [selectedImage, setSelectedImage] = useState<File | null>(null);
-    const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files.length > 0) {
-            const file = event.target.files[0];
-            setSelectedImage(file);
-        }
-    };
-    const handleSaveImage = () => {
-        if (selectedImage) {
-            const reader = new FileReader();
-            reader.readAsDataURL(selectedImage);
-            reader.onload = () => {
-                const base64Image = reader.result as string;
-                localStorage.setItem('image', base64Image);
-                console.log('Image saved to local storage');
-            };
-            reader.onerror = () => {
-                console.error('Error occurred while reading the image file');
-            };
-        }
-    };
+const Portfolio= observer(({portfolioOpen, setPortfolioOpen}) => {
     const [selected, setSelected] = useState("featured")
     const list = [
         {
@@ -56,13 +37,20 @@ export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
             title: "Branding"
         }
     ]
+    const featureStore = useStore();
+    useEffect(() => {
+        if (featureStore.featuredPortfolio.length === 0) {
+            featureStore.setItems()
+        }
+    },[featureStore])
     const [data, setData] = useState(featuredPortfolio)
 
     useEffect(() => {
         switch (selected) {
-            case 'featured':
-                setData(featuredPortfolio);
+            case 'featured': {
+                setData(featureStore.featuredPortfolio);
                 break;
+            }
             case 'web':
                 setData(webPortfolio);
                 break;
@@ -76,18 +64,21 @@ export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
                 setData(contentPortfolio);
                 break;
             default:
-                setData(featuredPortfolio);
+                setData(featureStore.featuredPortfolio);
                 break;
         }
 
-    }, [selected],);
+    }, [selected,featureStore]);
     const createNewItem = (item: AddedMyWork) => {
-        setData(prevState => [...prevState, item])
-        console.log(data)
+        // setData(prevState => [...prevState, item])
+        // featureStore.setItems();
+        featureStore.addItem(item);
     }
     const handleAddWorksClick = () => {
         setPortfolioOpen(!portfolioOpen);
     };
+
+
     return (
         <div className={"portfolio"} id={"portfolio"}>
             <h1>Portfolio</h1>
@@ -115,12 +106,8 @@ export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
                  onClick={handleAddWorksClick}>
                 <div className={"add-feature"} onClick={(e) => e.stopPropagation()}>
                     <h1>Add work</h1>
-                    <WorkForm selectedImage={selectedImage}
-                              handleImageUpload={handleImageUpload}
-                              handleSaveImage={handleSaveImage}
-                              portfolioOpen={portfolioOpen}
-                              setPortfolioOpen={setPortfolioOpen}
-                              createWorkPlace={(item: AddedMyWork) => createNewItem(item)}
+                    <WorkForm portfolioOpen={portfolioOpen}
+                              createWorkPlace={(item: AddedMyWork) => featureStore.createNewItem(item)}
                               handleAddWorksClick = {handleAddWorksClick}
                     />
 
@@ -134,4 +121,5 @@ export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
         </div>
 
     );
-}
+})
+    export default Portfolio

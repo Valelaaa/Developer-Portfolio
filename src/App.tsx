@@ -7,9 +7,10 @@ import Works from "./components/works/Works.tsx";
 import Testimonials from "./components/testimonials/Testimonials.tsx";
 import Contact from "./components/contact/Contact.tsx";
 import {useState} from "react";
+import {observer} from "mobx-react";
 
 
-function App() {
+const App: React.FC = observer(() => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [portfolioOpen, setPortfolioOpen] = useState(false);
 
@@ -26,6 +27,6 @@ function App() {
             </div>
         </div>
     )
-}
+})
 
-export default App
+export default App;
