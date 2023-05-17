@@ -14,4 +14,4 @@ export class StoreProvider extends Component<{ children: any }> {
 }
 
 const useStore = () => useContext(StoreContext);
-export default useStore();
+export default useStore;

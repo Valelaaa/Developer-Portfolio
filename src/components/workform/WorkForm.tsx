@@ -6,11 +6,12 @@ import {AddedMyWork} from "../../data.ts"
 interface FormWorkProps {
     createFeature: (item: AddedMyWork) => void
 }
+
 const WorkForm: React.FC<FormWorkProps> = ({
-                                     portfolioOpen,
-                                     createWorkPlace,
-                                     handleAddWorksClick
-                                 }) => {
+                                               portfolioOpen,
+                                               createWorkPlace,
+                                               handleAddWorksClick
+                                           }) => {
     const [title, setTitle] = useState('');
     const [link, setLink] = useState('');
     const [img, setImg] = useState('');

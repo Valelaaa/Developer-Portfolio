@@ -1,4 +1,4 @@
-import './portfolio.scss'
+    import './portfolio.scss'
 import PortfolioList from "../portfolioList/PortfolioList.tsx";
 import {useEffect, useState} from "react";
 import {PlusOutlined} from "@ant-design/icons";
@@ -10,8 +10,10 @@ import {
     contentPortfolio, AddedMyWork
 } from "../../data.ts";
 import WorkForm from "../workform/WorkForm.tsx";
+import useStore from "../../store/useStore.tsx";
+    import {observer} from "mobx-react";
 
-export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
+const Portfolio= observer(({portfolioOpen, setPortfolioOpen}) => {
     const [selected, setSelected] = useState("featured")
     const list = [
         {
@@ -35,13 +37,20 @@ export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
             title: "Branding"
         }
     ]
+    const featureStore = useStore();
+    useEffect(() => {
+        if (featureStore.featuredPortfolio.length === 0) {
+            featureStore.setItems()
+        }
+    },[featureStore])
     const [data, setData] = useState(featuredPortfolio)
 
     useEffect(() => {
         switch (selected) {
-            case 'featured':
-                setData(featuredPortfolio);
+            case 'featured': {
+                setData(featureStore.featuredPortfolio);
                 break;
+            }
             case 'web':
                 setData(webPortfolio);
                 break;
@@ -55,14 +64,15 @@ export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
                 setData(contentPortfolio);
                 break;
             default:
-                setData(featuredPortfolio);
+                setData(featureStore.featuredPortfolio);
                 break;
         }
 
-    }, [selected],);
+    }, [selected,featureStore]);
     const createNewItem = (item: AddedMyWork) => {
-        setData(prevState => [...prevState, item])
-        console.log(data)
+        // setData(prevState => [...prevState, item])
+        // featureStore.setItems();
+        featureStore.addItem(item);
     }
     const handleAddWorksClick = () => {
         setPortfolioOpen(!portfolioOpen);
@@ -97,7 +107,7 @@ export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
                 <div className={"add-feature"} onClick={(e) => e.stopPropagation()}>
                     <h1>Add work</h1>
                     <WorkForm portfolioOpen={portfolioOpen}
-                              createWorkPlace={(item: AddedMyWork) => createNewItem(item)}
+                              createWorkPlace={(item: AddedMyWork) => featureStore.createNewItem(item)}
                               handleAddWorksClick = {handleAddWorksClick}
                     />
 
@@ -111,4 +121,5 @@ export default function Portfolio({portfolioOpen, setPortfolioOpen}) {
         </div>
 
     );
-}
+})
+    export default Portfolio
