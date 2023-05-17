@@ -7,7 +7,7 @@ import {
     webPortfolio,
     mobilePortfolio,
     designPortfolio,
-    contentPortfolio, AddedMyWork, MyWork
+    contentPortfolio, AddedMyWork
 } from "../../data.ts";
 import WorkForm from "../workform/WorkForm.tsx";
 

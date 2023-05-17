@@ -3,11 +3,14 @@ import './workform.scss'
 import {useState} from "react";
 import {AddedMyWork} from "../../data.ts"
 
-export default function WorkForm({
+interface FormWorkProps {
+    createFeature: (item: AddedMyWork) => void
+}
+const WorkForm: React.FC<FormWorkProps> = ({
                                      portfolioOpen,
                                      createWorkPlace,
                                      handleAddWorksClick
-                                 }) {
+                                 }) => {
     const [title, setTitle] = useState('');
     const [link, setLink] = useState('');
     const [img, setImg] = useState('');
@@ -60,3 +63,4 @@ export default function WorkForm({
         </form>
     );
 }
+export default WorkForm;
