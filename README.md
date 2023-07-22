@@ -1,5 +1,5 @@
 <div align="center">Welcome to My Developer Portfolio!</div>
-<div align="center">![My Developer Portfolio](main.png)</div>
+<div align="center">![Image alt](https://github.com/Valelaaa/Web_lab_project/blob/main/main.png</div>
 About the Project
 My Developer Portfolio is a virtual business card that showcases my web development projects and provides a glimpse into my coding journey. Here, I proudly present my diverse range of projects, from simple web pages to complex web applications, along with insights into my programming experiences and knowledge.
 
