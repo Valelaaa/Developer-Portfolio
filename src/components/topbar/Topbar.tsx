@@ -11,7 +11,7 @@ export default ({menuOpen, setMenuOpen}) => {
                     <a href={"#intro"} className={"logo"}>Valela</a>
                     <div className="itemContainer">
                         <UserOutlined className={"icon"}/>
-                        <span>+373 67 54 74</span>
+                        <span>+373 67 54 74 54</span>
                     </div>
                     <div className="itemContainer">
 
