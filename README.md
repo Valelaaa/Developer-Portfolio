@@ -1,4 +1,4 @@
-**<div align="center">Welcome to My Developer Portfolio!</div>**
+<h1 align="center">Welcome to My Developer Portfolio!</h1>
 <div align="center"><img width="960" alt="main" src="https://github.com/Valelaaa/Web_lab_project/assets/78920421/a721b357-55e1-4a2e-99be-ef07bf5d115d"></div>
 <h2>About the Project</h2>
 
