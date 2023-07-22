@@ -8,7 +8,7 @@ export default ({menuOpen, setMenuOpen}) => {
         <div className={"top-bar " + (menuOpen && 'active')}>
             <div className="wrapper">
                 <div className="left">
-                    <a href={"#intro"} className={"logo"}>Valela</a>
+                    <a href={"/#intro"} className={"logo"}>Valela</a>
                     <div className="itemContainer">
                         <UserOutlined className={"icon"}/>
                         <span>+373 67 54 74 54</span>
